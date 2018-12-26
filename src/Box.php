@@ -62,4 +62,14 @@ class Box
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        $result = [];
+        for ($i = 0; $i < 3; $i++) {
+            $result[] = implode('', array_map(function(Element $element){ return $element->getName(); }, $this->getRow($i)));
+        }
+
+        return implode('/', $result);
+    }
 }
