@@ -41,6 +41,19 @@ class Box
         ];
     }
 
+    /**
+     * @param int $index
+     * @return Element[]
+     */
+    public function getColumn(int $index): array
+    {
+        return [
+            $this->map[$index],
+            $this->map[$index + 3],
+            $this->map[$index + 6],
+        ];
+    }
+
     public function updateMap(array $elements): Box
     {
         foreach ($elements as $element) {
