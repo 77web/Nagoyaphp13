@@ -1,21 +1,11 @@
 <?php
 
-namespace Ttskch\Nagoyaphp13;
+namespace Nanaweb\Nagoyaphp13;
 
 use PHPUnit\Framework\TestCase;
 
 class Nagoyaphp13Test extends TestCase
 {
-    /**
-     * @var Nagoyaphp13
-     */
-    protected $nagoyaphp13;
-
-    protected function setUp()
-    {
-        $this->nagoyaphp13 = new Nagoyaphp13;
-    }
-
     /**
      * @dataProvider dataProvider
      */

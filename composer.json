@@ -1,12 +1,8 @@
 {
-    "name": "ttskch/nagoyaphp13",
+    "name": "nanaweb/nagoyaphp13",
     "description": "",
     "license": "MIT",
     "authors": [
-        {
-            "name": "Takashi Kanemoto",
-            "email": "ttskch@gmail.com"
-        }
     ],
     "require": {
         "php": ">=7.0.0"
@@ -20,12 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ttskch\\Nagoyaphp13\\": "src/"
+            "Nanaweb\\Nagoyaphp13\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ttskch\\Nagoyaphp13\\": [
+            "Nanaweb\\Nagoyaphp13\\": [
                 "tests/",
                 "tests/Fake"
             ]

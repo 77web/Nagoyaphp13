@@ -1,6 +1,6 @@
 <?php
 
-namespace Ttskch\Nagoyaphp13;
+namespace Nanaweb\Nagoyaphp13;
 
 class Nagoyaphp13
 {
