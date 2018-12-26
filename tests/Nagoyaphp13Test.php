@@ -2,16 +2,58 @@
 
 namespace Nanaweb\Nagoyaphp13;
 
+use Nanaweb\Nagoyaphp13\CommandRunner\ColumnDown;
+use Nanaweb\Nagoyaphp13\CommandRunner\ColumnUp;
+use Nanaweb\Nagoyaphp13\CommandRunner\RowDown;
+use Nanaweb\Nagoyaphp13\CommandRunner\RowUp;
 use PHPUnit\Framework\TestCase;
 
 class Nagoyaphp13Test extends TestCase
 {
     /**
+     * @var Nagoyaphp13
+     */
+    private $nagoyaphp;
+
+    public function setUp()
+    {
+        $resolver = new CommandRunnerResolver();
+        $resolver->addCommandRunner(new RowUp());
+        $resolver->addCommandRunner(new RowDown());
+        $resolver->addCommandRunner(new ColumnUp());
+        $resolver->addCommandRunner(new ColumnDown());
+
+        $this->nagoyaphp = new Nagoyaphp13(
+            $resolver,
+            new CommandRegistry([
+                new Command('a', Command::TARGET_TYPE_ROW, 0, Command::DIRECTION_UP),
+                new Command('b', Command::TARGET_TYPE_ROW, 1, Command::DIRECTION_UP),
+                new Command('c', Command::TARGET_TYPE_ROW, 2, Command::DIRECTION_UP),
+                new Command('d', Command::TARGET_TYPE_COLUMN, 0, Command::DIRECTION_DOWN),
+                new Command('e', Command::TARGET_TYPE_COLUMN, 1, Command::DIRECTION_DOWN),
+                new Command('f', Command::TARGET_TYPE_COLUMN, 2, Command::DIRECTION_DOWN),
+                new Command('g', Command::TARGET_TYPE_ROW, 2, Command::DIRECTION_DOWN),
+                new Command('h', Command::TARGET_TYPE_ROW, 1, Command::DIRECTION_DOWN),
+                new Command('i', Command::TARGET_TYPE_ROW, 0, Command::DIRECTION_DOWN),
+                new Command('j', Command::TARGET_TYPE_COLUMN, 2, Command::DIRECTION_UP),
+                new Command('k', Command::TARGET_TYPE_COLUMN, 1, Command::DIRECTION_UP),
+                new Command('l', Command::TARGET_TYPE_COLUMN, 0, Command::DIRECTION_UP),
+
+            ])
+        );
+    }
+
+    public function tearDown()
+    {
+        $this->nagoyaphp = null;
+    }
+
+    /**
      * @dataProvider dataProvider
      */
     public function test($input, $expected)
     {
-        $this->assertEquals($expected, $this->nagoyaphp13->run($input));
+        $this->assertEquals($expected, (string)$this->nagoyaphp->run($input));
     }
 
     public function dataProvider()
